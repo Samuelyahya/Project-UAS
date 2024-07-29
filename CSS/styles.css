@@ -1,0 +1,16 @@
+/* Menentukan padding atas dan lebar maksimum untuk elemen dengan kelas 'block-container' */
+div.block-container {
+  padding-top: 3rem; /* Memberikan padding atas sebesar 3rem */
+  max-width: 1280px; /* Membatasi lebar maksimum elemen menjadi 1280px */
+}
+
+/* Menyembunyikan elemen dengan kelas 'st-emotion-cache-gi0tri e1nzilvr1' */
+span.st-emotion-cache-gi0tri.e1nzilvr1 {
+  display: none; /* Menyembunyikan elemen dari tampilan */
+}
+
+/* Menentukan tata letak teks dan overflow untuk elemen dengan kelas 'e1f1d6gn0' */
+.e1f1d6gn0 {
+  text-align: center; /* Menyelaraskan teks ke tengah */
+  overflow: hidden; /* Menyembunyikan konten yang meluap dari elemen */
+}

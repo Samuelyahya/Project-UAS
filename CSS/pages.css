@@ -1,0 +1,12 @@
+/* Menentukan padding atas dan lebar maksimum untuk elemen dengan kelas 'block-container' */
+div.block-container {
+  padding-top: 3rem; /* Memberikan padding atas sebesar 3rem */
+  max-width: 1280px; /* Membatasi lebar maksimum elemen menjadi 1280px */
+}
+
+/* Menyusun elemen dengan kelas 'e1f1d6gn5' secara fleksibel */
+.e1f1d6gn5 {
+  display: flex; /* Mengatur elemen sebagai kontainer flexbox */
+  justify-content: center; /* Menyelaraskan konten di tengah secara horizontal */
+  align-items: flex-start; /* Menyelaraskan konten ke atas secara vertikal */
+}
