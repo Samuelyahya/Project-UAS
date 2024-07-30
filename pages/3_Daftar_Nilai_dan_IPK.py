@@ -53,7 +53,7 @@ def calculate_ipk(matkul):
     return total_nilai / len(matkul) if matkul else 0
 
 
-# Fungsi untuk menghitung IPK berdasarkan nilai yang ada
+# Fungsi untuk menghitung IPK kumulatif berdasarkan daftar mata kuliah dengan nilai dan SKS.
 def cumulative_IPK(matkul):
     total_nilai = 0
     total_sks = 0
@@ -71,7 +71,7 @@ def cumulative_IPK(matkul):
     }
     for mk in matkul:
         nilai = mk["nilai"]
-        sks = mk.get("sks", 3)  # Misalkan default SKS adalah 3 jika tidak tersedia
+        sks = mk.get("sks", 3)
         total_nilai += nilai_to_sks.get(nilai, 0) * sks
         total_sks += sks
     return total_nilai / total_sks if total_sks > 0 else 0
@@ -85,14 +85,14 @@ def get_matkul_with_grades(semester):
     return cursor.fetchall()
 
 
-# Menghitung IPK untuk setiap semester
+# Menghitung IP untuk setiap semester
 ipk_per_semester = []
 for semester in available_semesters:
     matkul = get_matkul_with_grades(semester)
     ipk = calculate_ipk(matkul)
     ipk_per_semester.append((semester, ipk))
 
-# Menghitung IPK untuk setiap semester dan mengumpulkan data untuk IPK kumulatif
+# Menghitung IP untuk setiap semester dan mengumpulkan data untuk IPK kumulatif
 matkul_all_semesters = []
 for semester in available_semesters:
     matkul = get_matkul_with_grades(semester)
