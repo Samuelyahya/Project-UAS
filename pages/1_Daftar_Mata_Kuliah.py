@@ -52,7 +52,7 @@ sks_per_semester = get_sks_per_semester(current_semester)
 if st.button("Kembali"):
     st.switch_page("Beranda.py")
 
-# Menampilkan subjudul dan tabel mata kuliah
+# Menampilkan sub judul dan tabel mata kuliah
 st.subheader(f"Daftar Mata Kuliah di Semester {current_semester}")
 with st.container(border=True):
     col1, col2 = st.columns([4, 6])

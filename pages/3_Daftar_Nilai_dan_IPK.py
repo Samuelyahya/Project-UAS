@@ -34,8 +34,47 @@ def calculate_ipk(matkul):
             total_nilai += 4.00
         elif mk["nilai"] == "A-":
             total_nilai += 3.67
-        # Tambahkan perhitungan nilai lainnya jika ada
+        elif mk["nilai"] == "B+":
+            total_nilai += 3.33
+        elif mk["nilai"] == "B":
+            total_nilai += 3.00
+        elif mk["nilai"] == "B-":
+            total_nilai += 2.67
+        elif mk["nilai"] == "C+":
+            total_nilai += 2.33
+        elif mk["nilai"] == "C":
+            total_nilai += 2.00
+        elif mk["nilai"] == "C-":
+            total_nilai += 1.67
+        elif mk["nilai"] == "D":
+            total_nilai += 1.00
+        elif mk["nilai"] == "E":
+            total_nilai += 0.00
     return total_nilai / len(matkul) if matkul else 0
+
+
+# Fungsi untuk menghitung IPK berdasarkan nilai yang ada
+def cumulative_IPK(matkul):
+    total_nilai = 0
+    total_sks = 0
+    nilai_to_sks = {
+        "A": 4.00,
+        "A-": 3.67,
+        "B+": 3.33,
+        "B": 3.00,
+        "B-": 2.67,
+        "C+": 2.33,
+        "C": 2.00,
+        "C-": 1.67,
+        "D": 1.00,
+        "E": 0.00,
+    }
+    for mk in matkul:
+        nilai = mk["nilai"]
+        sks = mk.get("sks", 3)  # Misalkan default SKS adalah 3 jika tidak tersedia
+        total_nilai += nilai_to_sks.get(nilai, 0) * sks
+        total_sks += sks
+    return total_nilai / total_sks if total_sks > 0 else 0
 
 
 # Fungsi untuk mendapatkan mata kuliah dan nilai untuk semester tertentu
@@ -52,6 +91,15 @@ for semester in available_semesters:
     matkul = get_matkul_with_grades(semester)
     ipk = calculate_ipk(matkul)
     ipk_per_semester.append((semester, ipk))
+
+# Menghitung IPK untuk setiap semester dan mengumpulkan data untuk IPK kumulatif
+matkul_all_semesters = []
+for semester in available_semesters:
+    matkul = get_matkul_with_grades(semester)
+    matkul_all_semesters.extend(matkul)
+
+ipk_cumulative = cumulative_IPK(matkul_all_semesters)
+
 
 if st.button("Kembali"):
     st.switch_page("Beranda.py")
@@ -74,7 +122,8 @@ with st.container(border=True):
         matkul_df = pd.DataFrame(matkul)
         matkul_df.columns = ["Mata Kuliah", "Nilai"]
         st.dataframe(matkul_df, hide_index=True)
-        st.write(f"IPK kamu di semester {selected_semester} adalah: {ipk:.2f}")
+        st.write(f"IP kamu di semester {selected_semester} adalah: {ipk:.2f}")
+        st.write(f"IPK kamu adalah: {ipk_cumulative:.2f}")
 
     with col2:
         # Membuat chart IPK per semester menggunakan plotly
@@ -84,8 +133,8 @@ with st.container(border=True):
         fig = px.line(
             x=semesters,
             y=ipks,
-            labels={"x": "Semester", "y": "IPK"},
-            title="Grafik IPK per Semester",
+            labels={"x": "Semester", "y": "IPS"},
+            title="Grafik IPS Mahasiswa",
         )
         st.plotly_chart(fig)
 

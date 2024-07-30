@@ -1,12 +1,12 @@
 import streamlit as st
 
-# Mengecek apakah pnegguna sudah login
+# Mengecek apakah pengguna sudah login
 def check_login():
     """
     Memeriksa status login pengguna. Jika pengguna belum login, tampilkan pesan error dan hentikan eksekusi.
     """
     if "logged_in" not in st.session_state or not st.session_state.logged_in:
-        st.error("Please log in first.")
+        st.error("Mohon untuk log in terlebih dahulu.")
         st.stop()
 
 # Fungsi utama untuk menampilkan konten halaman setelah login
